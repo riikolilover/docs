@@ -111,7 +111,7 @@
   },
   {
     "action": "codespaces.connect",
-    "description": "A codespace was started.",
+    "description": "Credentials for a codespace were refreshed.",
     "docs_reference_links": "N/A"
   },
   {
@@ -126,57 +126,62 @@
   },
   {
     "action": "codespaces.export_environment",
-    "description": "N/A",
+    "description": "A codespace was exported to a branch on GitHub.",
     "docs_reference_links": "N/A"
   },
   {
     "action": "codespaces.restore",
-    "description": "N/A",
+    "description": "A codespace was restored.",
+    "docs_reference_links": "N/A"
+  },
+  {
+    "action": "codespaces.start_environment",
+    "description": "A codespace was started.",
     "docs_reference_links": "N/A"
   },
   {
     "action": "codespaces.suspend_environment",
-    "description": "N/A",
+    "description": "A codespace was stopped.",
     "docs_reference_links": "N/A"
   },
   {
     "action": "codespaces.trusted_repositories_access_update",
-    "description": "Triggered when you change your personal account's access and security setting for Codespaces.",
+    "description": "A personal account's access and security setting for Codespaces were updated.",
     "docs_reference_links": "/codespaces/managing-codespaces-for-your-organization/managing-repository-access-for-your-organizations-codespaces"
   },
   {
     "action": "copilot.cfb_seat_added",
-    "description": "A seat was added to the Copilot for Business subscription for a user and they have received access to GitHub Copilot.",
+    "description": "A Copilot Business or Copilot Enterprise seat was added for a user and they have received access to GitHub Copilot. This can occur as the result of directly assigning a seat for a user, assigning a seat for a team, or setting the organization to allow access for all members.",
     "docs_reference_links": "N/A"
   },
   {
     "action": "copilot.cfb_seat_assignment_created",
-    "description": "A seat assignment was newly created for a user.",
+    "description": "A Copilot Business or Copilot Enterprise seat assignment was newly created for a user or a team, and seats are being created.",
     "docs_reference_links": "/copilot/overview-of-github-copilot/about-github-copilot-for-business"
   },
   {
     "action": "copilot.cfb_seat_assignment_refreshed",
-    "description": "A seat assignment that was previously pending cancellation was re-assigned and the user will retain access to GitHub Copilot.",
+    "description": "A seat assignment that was previously pending cancellation was re-assigned and the user will retain access to Copilot.",
     "docs_reference_links": "N/A"
   },
   {
     "action": "copilot.cfb_seat_assignment_reused",
-    "description": "A seat assignment was re-created for a user who already had a seat with no pending cancellation date.",
+    "description": "A Copilot Business or Copilot Enterprise seat assignment was re-created for a user who already had a seat with no pending cancellation date, and the user will retain access to Copilot.",
     "docs_reference_links": "N/A"
   },
   {
     "action": "copilot.cfb_seat_assignment_unassigned",
-    "description": "A seat was unassigned from a user and they will lose access to GitHub Copilot at the end of the billing cycle.",
+    "description": "A user or team's Copilot Business or Copilot Enterprise seat assignment was unassigned, and the user(s) will lose access to Copilot at the end of the current billing cycle.",
     "docs_reference_links": "N/A"
   },
   {
     "action": "copilot.cfb_seat_cancelled",
-    "description": "A seat was canceled from the Copilot for Business subscription and the user no longer has access to GitHub Copilot.",
+    "description": "A user's Copilot Business or Copilot Enterprise seat was canceled, and the user no longer has access to Copilot.",
     "docs_reference_links": "N/A"
   },
   {
     "action": "copilot.cfb_seat_cancelled_by_staff",
-    "description": "A seat was canceled from the Copilot for Business subscription manually by GitHub and the user no longer has access to GitHub Copilot.",
+    "description": "A user's Copilot Business or Copilot Enterprise seat was canceled manually by GitHub staff, and the user no longer has access to Copilot.",
     "docs_reference_links": "N/A"
   },
   {
@@ -276,8 +281,8 @@
   },
   {
     "action": "environment.create_actions_variable",
-    "description": "N/A",
-    "docs_reference_links": "N/A"
+    "description": "A variable was created for a GitHub Actions environment.",
+    "docs_reference_links": "/actions/learn-github-actions/variables#creating-configuration-variables-for-an-environment"
   },
   {
     "action": "environment.delete",
@@ -291,8 +296,8 @@
   },
   {
     "action": "environment.remove_actions_variable",
-    "description": "N/A",
-    "docs_reference_links": "N/A"
+    "description": "A variable was deleted for a GitHub Actions environment.",
+    "docs_reference_links": "/actions/learn-github-actions/variables#creating-configuration-variables-for-an-environment"
   },
   {
     "action": "environment.remove_protection_rule",
@@ -306,8 +311,8 @@
   },
   {
     "action": "environment.update_actions_variable",
-    "description": "N/A",
-    "docs_reference_links": "N/A"
+    "description": "A variable was updated for a GitHub Actions environment.",
+    "docs_reference_links": "/actions/learn-github-actions/variables#creating-configuration-variables-for-an-environment"
   },
   {
     "action": "environment.update_protection_rule",
@@ -376,12 +381,12 @@
   },
   {
     "action": "integration.create",
-    "description": "An integration was created.",
+    "description": "A GitHub App was created.",
     "docs_reference_links": "N/A"
   },
   {
     "action": "integration.destroy",
-    "description": "An integration was deleted.",
+    "description": "A GitHub App was deleted.",
     "docs_reference_links": "N/A"
   },
   {
@@ -391,68 +396,78 @@
   },
   {
     "action": "integration_installation.create",
-    "description": "An integration was installed.",
-    "docs_reference_links": "N/A"
+    "description": "A GitHub App was installed.",
+    "docs_reference_links": "/apps/using-github-apps/authorizing-github-apps"
   },
   {
     "action": "integration_installation.destroy",
-    "description": "An integration was uninstalled.",
-    "docs_reference_links": "N/A"
+    "description": "A GitHub App was uninstalled.",
+    "docs_reference_links": "/apps/using-github-apps/reviewing-and-modifying-installed-github-apps#blocking-access"
   },
   {
     "action": "integration_installation.repositories_added",
-    "description": "Repositories were added to an integration.",
-    "docs_reference_links": "N/A"
+    "description": "Repositories were added to a GitHub App.",
+    "docs_reference_links": "/apps/using-github-apps/reviewing-and-modifying-installed-github-apps#modifying-repository-access"
   },
   {
     "action": "integration_installation.repositories_removed",
-    "description": "Repositories were removed from an integration.",
-    "docs_reference_links": "N/A"
+    "description": "Repositories were removed from a GitHub App.",
+    "docs_reference_links": "/apps/using-github-apps/reviewing-and-modifying-installed-github-apps#modifying-repository-access"
   },
   {
     "action": "integration_installation.suspend",
-    "description": "An integration was suspended.",
-    "docs_reference_links": "N/A"
+    "description": "A GitHub App was suspended.",
+    "docs_reference_links": "/apps/using-github-apps/reviewing-and-modifying-installed-github-apps#blocking-access"
   },
   {
     "action": "integration_installation.unsuspend",
-    "description": "An integration was unsuspended.",
-    "docs_reference_links": "N/A"
+    "description": "A GitHub App was unsuspended.",
+    "docs_reference_links": "/apps/using-github-apps/reviewing-and-modifying-installed-github-apps#blocking-access"
   },
   {
     "action": "integration_installation.version_updated",
-    "description": "Permissions for an integration were updated.",
-    "docs_reference_links": "N/A"
+    "description": "Permissions for a GitHub App were updated.",
+    "docs_reference_links": "/apps/using-github-apps/approving-updated-permissions-for-a-github-app"
   },
   {
     "action": "integration.manager_added",
-    "description": "A member of an enterprise or organization was added as an integration manager.",
-    "docs_reference_links": "N/A"
+    "description": "A member of an enterprise or organization was added as a GitHub App manager.",
+    "docs_reference_links": "/organizations/managing-programmatic-access-to-your-organization/adding-and-removing-github-app-managers-in-your-organization#giving-someone-the-ability-to-manage-all-github-apps-owned-by-the-organization"
   },
   {
     "action": "integration.manager_removed",
-    "description": "A member of an enterprise or organization was removed from being an integration manager.",
-    "docs_reference_links": "N/A"
+    "description": "A member of an enterprise or organization was removed from being a GitHub App manager.",
+    "docs_reference_links": "/organizations/managing-programmatic-access-to-your-organization/adding-and-removing-github-app-managers-in-your-organization#removing-a-github-app-managers-permissions-for-the-entire-organization"
   },
   {
     "action": "integration.remove_client_secret",
-    "description": "A client secret for an integration was removed.",
+    "description": "A client secret for a GitHub App was removed.",
     "docs_reference_links": "N/A"
   },
   {
     "action": "integration.revoke_all_tokens",
-    "description": "All user tokens for an integration were requested to be revoked.",
+    "description": "All user tokens for a GitHub App were requested to be revoked.",
     "docs_reference_links": "N/A"
   },
   {
     "action": "integration.revoke_tokens",
-    "description": "Token(s) for an integration were revoked.",
+    "description": "Token(s) for a GitHub App were revoked.",
     "docs_reference_links": "N/A"
   },
   {
+    "action": "integration.suspend",
+    "description": "A GitHub App was suspended.",
+    "docs_reference_links": "/apps/maintaining-github-apps/suspending-a-github-app-installation"
+  },
+  {
     "action": "integration.transfer",
-    "description": "Ownership of an integration was transferred to another user or organization.",
-    "docs_reference_links": "N/A"
+    "description": "Ownership of a GitHub App was transferred to another user or organization.",
+    "docs_reference_links": "/apps/maintaining-github-apps/transferring-ownership-of-a-github-app"
+  },
+  {
+    "action": "integration.unsuspend",
+    "description": "A GitHub App was unsuspended.",
+    "docs_reference_links": "/apps/maintaining-github-apps/suspending-a-github-app-installation"
   },
   {
     "action": "marketplace_agreement_signature.create",
@@ -655,6 +670,21 @@
     "docs_reference_links": "N/A"
   },
   {
+    "action": "org.security_center_export_coverage",
+    "description": "A CSV export was requested on the Coverage page.",
+    "docs_reference_links": "N/A"
+  },
+  {
+    "action": "org.security_center_export_overview_dashboard",
+    "description": "A CSV export was requested on the Overview Dashboard page.",
+    "docs_reference_links": "N/A"
+  },
+  {
+    "action": "org.security_center_export_risk",
+    "description": "A CSV export was requested on the Risk page.",
+    "docs_reference_links": "N/A"
+  },
+  {
     "action": "org.set_actions_fork_pr_approvals_policy",
     "description": "The setting for requiring approvals for workflows from public forks was changed for an organization.",
     "docs_reference_links": "/organizations/managing-organization-settings/disabling-or-limiting-github-actions-for-your-organization#requiring-approval-for-workflows-from-public-forks"
@@ -840,6 +870,21 @@
     "docs_reference_links": "/issues/organizing-your-work-with-project-boards/managing-project-boards/closing-a-project-board"
   },
   {
+    "action": "project_collaborator.add",
+    "description": "A collaborator was added to a project.",
+    "docs_reference_links": "N/A"
+  },
+  {
+    "action": "project_collaborator.remove",
+    "description": "A collaborator was removed from a project.",
+    "docs_reference_links": "N/A"
+  },
+  {
+    "action": "project_collaborator.update",
+    "description": "A project collaborator's permission level was changed.",
+    "docs_reference_links": "N/A"
+  },
+  {
     "action": "project.create",
     "description": "A project board was created.",
     "docs_reference_links": "N/A"
@@ -903,6 +948,16 @@
     "action": "project_view.delete",
     "description": "A view was deleted in a project board.",
     "docs_reference_links": "/issues/planning-and-tracking-with-projects/customizing-views-in-your-project/managing-your-views"
+  },
+  {
+    "action": "project.visibility_private",
+    "description": "A project's visibility was changed from public to private.",
+    "docs_reference_links": "N/A"
+  },
+  {
+    "action": "project.visibility_public",
+    "description": "A project's visibility was changed from private to public.",
+    "docs_reference_links": "N/A"
   },
   {
     "action": "protected_branch.update_merge_queue_enforcement_level",
@@ -1037,16 +1092,16 @@
   {
     "action": "repo.create_actions_secret",
     "description": "A GitHub Actions secret was created for a repository.",
-    "docs_reference_links": "/actions/security-guides/encrypted-secrets#creating-encrypted-secrets-for-a-repository"
+    "docs_reference_links": "/actions/security-guides/using-secrets-in-github-actions#creating-secrets-for-a-repository"
   },
   {
     "action": "repo.create_actions_variable",
-    "description": "N/A",
-    "docs_reference_links": "N/A"
+    "description": "A GitHub Actions variable was created for a repository.",
+    "docs_reference_links": "/actions/learn-github-actions/variables#creating-configuration-variables-for-a-repository"
   },
   {
     "action": "repo.create_integration_secret",
-    "description": "An integration secret was created for a repository.",
+    "description": "A Codespaces or Dependabot secret was created for a repository.",
     "docs_reference_links": "N/A"
   },
   {
@@ -1112,16 +1167,16 @@
   {
     "action": "repo.remove_actions_secret",
     "description": "A GitHub Actions secret was deleted for a repository.",
-    "docs_reference_links": "N/A"
+    "docs_reference_links": "/actions/security-guides/using-secrets-in-github-actions#creating-secrets-for-a-repository"
   },
   {
     "action": "repo.remove_actions_variable",
-    "description": "N/A",
-    "docs_reference_links": "N/A"
+    "description": "A GitHub Actions variable was deleted for a repository.",
+    "docs_reference_links": "/actions/learn-github-actions/variables#creating-configuration-variables-for-a-repository"
   },
   {
     "action": "repo.remove_integration_secret",
-    "description": "An integration secret was deleted for a repository.",
+    "description": "A Codespaces or Dependabot secret was deleted for a repository.",
     "docs_reference_links": "N/A"
   },
   {
@@ -1216,8 +1271,8 @@
   },
   {
     "action": "repo.update_actions_secret",
-    "description": "A GitHub Actions secret was updated.",
-    "docs_reference_links": "N/A"
+    "description": "A GitHub Actions secret was updated for a repository.",
+    "docs_reference_links": "/actions/security-guides/using-secrets-in-github-actions#creating-secrets-for-a-repository"
   },
   {
     "action": "repo.update_actions_settings",
@@ -1226,8 +1281,8 @@
   },
   {
     "action": "repo.update_actions_variable",
-    "description": "N/A",
-    "docs_reference_links": "N/A"
+    "description": "A GitHub Actions variable was updated for a repository.",
+    "docs_reference_links": "/actions/learn-github-actions/variables#creating-configuration-variables-for-a-repository"
   },
   {
     "action": "repo.update_default_branch",
@@ -1236,7 +1291,7 @@
   },
   {
     "action": "repo.update_integration_secret",
-    "description": "An integration secret was updated for a repository.",
+    "description": "A Codespaces or Dependabot secret was updated for a repository.",
     "docs_reference_links": "N/A"
   },
   {
@@ -1571,7 +1626,7 @@
   },
   {
     "action": "user.create_integration_secret",
-    "description": "N/A",
+    "description": "A user secret for Codespaces was created.",
     "docs_reference_links": "N/A"
   },
   {
@@ -1623,6 +1678,16 @@
     "action": "user.disable_sockpuppet_disallowed",
     "description": "N/A",
     "docs_reference_links": "N/A"
+  },
+  {
+    "action": "user_email.confirm_claim",
+    "description": "An enterprise managed user claimed an email address.",
+    "docs_reference_links": "N/A"
+  },
+  {
+    "action": "user_email.mark_as_unclaimed",
+    "description": "N/A",
+    "docs_reference_links": "An enterprise managed user unclaimed an email address."
   },
   {
     "action": "user.enable_collaborators_only",
@@ -1691,7 +1756,7 @@
   },
   {
     "action": "user.remove_integration_secret",
-    "description": "N/A",
+    "description": "A user secret for Codespaces was deleted.",
     "docs_reference_links": "N/A"
   },
   {
@@ -1791,7 +1856,7 @@
   },
   {
     "action": "user.update_integration_secret",
-    "description": "N/A",
+    "description": "A user secret for Codespaces was updated.",
     "docs_reference_links": "N/A"
   },
   {
@@ -1830,8 +1895,18 @@
     "docs_reference_links": "N/A"
   },
   {
+    "action": "workflows.pin_workflow",
+    "description": "A workflow was pinned.",
+    "docs_reference_links": "N/A"
+  },
+  {
     "action": "workflows.reject_workflow_job",
     "description": "A workflow job was rejected.",
     "docs_reference_links": "/actions/managing-workflow-runs/reviewing-deployments"
+  },
+  {
+    "action": "workflows.unpin_workflow",
+    "description": "A workflow was unpinned after previously being pinned.",
+    "docs_reference_links": "N/A"
   }
 ]

@@ -9,7 +9,6 @@ redirect_from:
 versions:
   fpt: '*'
   ghes: '*'
-  ghae: '*'
   ghec: '*'
 topics:
   - Organizations
@@ -33,8 +32,8 @@ If you've created a custom repository role with an inherited role that is lower 
 
 **Notes:**
 
-- All changes to base permissions will affect both new and existing members.
-- {% data reusables.repositories.org-base-permissions-private-forks %}
+* All changes to base permissions will affect both new and existing members.
+* {% data reusables.repositories.org-base-permissions-private-forks %}
 
 {% endnote %}
 
@@ -48,5 +47,5 @@ If you've created a custom repository role with an inherited role that is lower 
 
 ## Further reading
 
-- "[AUTOTITLE](/organizations/managing-user-access-to-your-organizations-repositories/managing-repository-roles/repository-roles-for-an-organization)"
-- "[AUTOTITLE](/organizations/managing-user-access-to-your-organizations-repositories/managing-outside-collaborators/adding-outside-collaborators-to-repositories-in-your-organization)"
+* "[AUTOTITLE](/organizations/managing-user-access-to-your-organizations-repositories/managing-repository-roles/repository-roles-for-an-organization)"
+* "[AUTOTITLE](/organizations/managing-user-access-to-your-organizations-repositories/managing-outside-collaborators/adding-outside-collaborators-to-repositories-in-your-organization)"

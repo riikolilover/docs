@@ -1,7 +1,9 @@
 ---
 title: GitHub REST API documentation
 shortTitle: REST API
-intro: 'Create integrations, retrieve data, and automate your workflows with the {% data variables.product.prodname_dotcom %} REST API.'
+intro: >-
+  Create integrations, retrieve data, and automate your workflows with the {%
+  data variables.product.prodname_dotcom %} REST API.
 introLinks:
   overview: /rest/about-the-rest-api/about-the-rest-api
   quickstart: /rest/quickstart
@@ -31,7 +33,6 @@ redirect_from:
 versions:
   fpt: '*'
   ghes: '*'
-  ghae: '*'
   ghec: '*'
 children:
   - /quickstart
@@ -48,6 +49,7 @@ children:
   - /checks
   - /classroom
   - /code-scanning
+  - /code-security
   - /codes-of-conduct
   - /codespaces
   - /collaborators

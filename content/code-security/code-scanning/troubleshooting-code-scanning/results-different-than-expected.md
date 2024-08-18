@@ -4,12 +4,12 @@ shortTitle: Results different than expected
 intro: 'If your {% data variables.product.prodname_code_scanning %} results are different than you expected, you can check which configurations are active.'
 allowTitleToDifferFromFilename: true
 versions:
-  feature: code-scanning-without-workflow
+  fpt: '*'
+  ghes: '*'
+  ghec: '*'
 redirect_from:
   - /code-security/code-scanning/troubleshooting-code-scanning/results-are-different-than-expected
 ---
-
-{% data reusables.code-scanning.beta %}
 
 If your {% data variables.product.prodname_code_scanning %} results are different than you expected, you may have both default and advanced setup configured for your repository. When you enable default setup, this disables the existing {% data variables.product.prodname_codeql %} workflow file and blocks any {% data variables.product.prodname_codeql %} API analysis from uploading results.
 

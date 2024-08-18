@@ -41,8 +41,8 @@ shortTitle: Migrate data
    ghe-migrator prepare /home/admin/MIGRATION-GUID.tar.gz
    ```
 
-   - To start a new import attempt, run `ghe-migrator prepare` again and get a new Migration GUID.
-   - {% data reusables.enterprise_migrations.specify-staging-path %}
+   * To start a new import attempt, run `ghe-migrator prepare` again and get a new Migration GUID.
+   * {% data reusables.enterprise_migrations.specify-staging-path %}
 
 ## Generating a list of migration conflicts
 
@@ -52,7 +52,7 @@ shortTitle: Migrate data
    ghe-migrator conflicts -g MIGRATION-GUID > conflicts.csv
    ```
 
-   - If no conflicts are reported, you can safely import the data by following the steps in "[AUTOTITLE](/migrations/using-ghe-migrator/migrating-data-to-github-enterprise-server)".
+   * If no conflicts are reported, you can safely import the data.
 
 1. If there are conflicts, using the [`scp`](https://acloudguru.com/blog/engineering/ssh-and-scp-howto-tips-tricks#scp) command, copy _conflicts.csv_ to your local computer:
 
@@ -98,7 +98,7 @@ There are several different mapping actions that `ghe-migrator` can take when tr
 | `map_or_rename` | If the target exists, map to that target. Otherwise, rename the imported model. | Users
 | `merge`       | Data from the source is combined with existing data on the target. | Teams, projects
 
-**We strongly suggest you review the _conflicts.csv_ file and use [`ghe-migrator audit`](/migrations/using-ghe-migrator/migrating-data-to-github-enterprise-server) to ensure that the proper actions are being taken.** If everything looks good, you can continue to "[AUTOTITLE](/migrations/using-ghe-migrator/migrating-data-to-github-enterprise-server)".
+**We strongly suggest you review the _conflicts.csv_ file and use `ghe-migrator audit` to ensure that the proper actions are being taken.** If everything looks good, you can continue.
 
 ## Resolving migration conflicts or setting up custom mappings
 
@@ -128,7 +128,7 @@ A common scenario during a migration is for migrated users to have different use
 
 Given a list of usernames from the source and a list of usernames on the target, you can build a CSV file with custom mappings and then apply it to ensure each user's username and content is correctly attributed to them at the end of a migration.
 
-You can quickly generate a CSV of users being migrated in the CSV format needed to apply custom mappings by using the [`ghe-migrator audit`](/migrations/using-ghe-migrator/migrating-data-to-github-enterprise-server) command:
+You can quickly generate a CSV of users being migrated in the CSV format needed to apply custom mappings by using the `ghe-migrator audit` command:
 
 ```shell
 ghe-migrator audit -m user -g MIGRATION-GUID > users.csv
@@ -165,8 +165,8 @@ The same process can be used to create mappings for each record that supports cu
 {% data reusables.enterprise_installation.ssh-into-target-instance %}
 
 1. Using the `ghe-migrator import` command, start the import process. You'll need:
-   - Your Migration GUID. For more information, see "[Preparing the migrated data for import to {% data variables.product.prodname_ghe_server %}](#preparing-the-migrated-data)."
-   - Your {% data variables.product.pat_generic %} for authentication. The {% data variables.product.pat_generic %} that you use is only for authentication as a site administrator, and does not require any specific scope{% ifversion pat-v2 %} or permissions{% endif %}. For more information, see "[AUTOTITLE](/authentication/keeping-your-account-and-data-secure/creating-a-personal-access-token)."
+   * Your Migration GUID. For more information, see "[Preparing the migrated data for import to {% data variables.product.prodname_ghe_server %}](#preparing-the-migrated-data)."
+   * Your {% data variables.product.pat_generic %} for authentication. The {% data variables.product.pat_generic %} that you use is only for authentication as a site administrator, and does not require any specific scope{% ifversion pat-v2 %} or permissions{% endif %}. For more information, see "[AUTOTITLE](/authentication/keeping-your-account-and-data-secure/creating-a-personal-access-token)."
 
    ```shell
    $ ghe-migrator import /home/admin/MIGRATION-GUID.tar.gz -g MIGRATION-GUID -u USERNAME -p TOKEN
@@ -175,14 +175,14 @@ The same process can be used to create mappings for each record that supports cu
    > Import 100% complete /
    ```
 
-   - {% data reusables.enterprise_migrations.specify-staging-path %}
+   * {% data reusables.enterprise_migrations.specify-staging-path %}
 
 ## Reviewing migration data
 
 By default, `ghe-migrator audit` returns every record. It also allows you to filter records by:
 
-- The types of records.
-- The state of the records.
+* The types of records.
+* The state of the records.
 
 The record types match those found in the [migrated data](/migrations/using-ghe-migrator/about-ghe-migrator#migrated-data).
 
@@ -195,7 +195,7 @@ The record types match those found in the [migrated data](/migrations/using-ghe-
 | Repositories    | `repository`
 | Teams           | `team`
 | Milestones      | `milestone`
-| Project boards  | `project`
+| {% data variables.projects.projects_v1_boards_caps %}  | `project`
 | Issues          | `issue`
 | Issue comments  | `issue_comment`
 | Pull requests   | `pull_request`
@@ -273,9 +273,9 @@ After your migration is applied to your target instance and you have reviewed th
 ### Unlocking repositories from an organization on {% data variables.product.prodname_dotcom_the_website %}
 
 To unlock the repositories on a {% data variables.product.prodname_dotcom_the_website %} organization, you'll send a `DELETE` request to [the migration unlock endpoint](/free-pro-team@latest/rest/migrations#unlock-an-organization-repository). You'll need:
-- Your access token for authentication
-- The unique `id` of the migration
-- The name of the repository to unlock
+* Your access token for authentication
+* The unique `id` of the migration
+* The name of the repository to unlock
 
 ```shell
 curl -H "Authorization: Bearer GITHUB_ACCESS_TOKEN" -X DELETE \
@@ -285,7 +285,7 @@ curl -H "Authorization: Bearer GITHUB_ACCESS_TOKEN" -X DELETE \
 
 ### Deleting repositories from an organization on {% data variables.product.prodname_dotcom_the_website %}
 
-After unlocking the {% data variables.product.prodname_dotcom_the_website %} organization's repositories, you should delete every repository you previously migrated using [the repository delete endpoint](/rest/repos#delete-a-repository). You'll need your access token for authentication:
+After unlocking the {% data variables.product.prodname_dotcom_the_website %} organization's repositories, you should delete every repository you previously migrated using [the repository delete endpoint](/rest/repos/repos#delete-a-repository). You'll need your access token for authentication:
 
 ```shell
 curl -H "Authorization: Bearer GITHUB_ACCESS_TOKEN" -X DELETE \

@@ -24,14 +24,14 @@ Customers can choose a monthly or yearly billing cycle when they purchase your a
 ## Providing billing services in your app's UI
 
 Customers should be able to perform the following actions from your app's website:
-- Customers should be able to modify or cancel their {% data variables.product.prodname_marketplace %} plans for personal and organizational accounts separately.
+* Customers should be able to modify or cancel their {% data variables.product.prodname_marketplace %} plans for personal and organizational accounts separately.
 {% data reusables.marketplace.marketplace-billing-ui-requirements %}
 
 ## Billing services for upgrades, downgrades, and cancellations
 
 Follow these guidelines for upgrades, downgrades, and cancellations to maintain a clear and consistent billing process. For more detailed instructions about the {% data variables.product.prodname_marketplace %} purchase events, see "[AUTOTITLE](/apps/github-marketplace/using-the-github-marketplace-api-in-your-app)."
 
-You can use the `marketplace_purchase` webhook's `effective_date` key to determine when a plan change will occur and periodically synchronize the [List accounts for a plan](/rest/apps#list-accounts-for-a-plan).
+You can use the `marketplace_purchase` webhook's `effective_date` key to determine when a plan change will occur and periodically synchronize the [List accounts for a plan](/rest/apps/marketplace#list-accounts-for-a-plan).
 
 ### Upgrades
 
@@ -46,9 +46,9 @@ For information about building upgrade and downgrade workflows into your app, se
 Downgrades occur when a customer moves to a free plan from a paid plan, selects a plan with a lower cost than their current plan, or changes their billing cycle from yearly to monthly. When downgrades or cancellations occur, you don't need to provide a refund. Instead, the current plan will remain active until the last day of the current billing cycle. The `marketplace_purchase` event will be sent when the new plan takes effect at the beginning of the customer's next billing cycle.
 
 When a customer cancels a plan, you must:
-- Automatically downgrade them to the free plan, if it exists.
+* Automatically downgrade them to the free plan, if it exists.
 
   {% data reusables.marketplace.cancellation-clarification %}
-- Enable them to upgrade the plan through GitHub if they would like to continue the plan at a later time.
+* Enable them to upgrade the plan through GitHub if they would like to continue the plan at a later time.
 
 For information about building cancellation workflows into your app, see "[AUTOTITLE](/apps/github-marketplace/using-the-github-marketplace-api-in-your-app/handling-plan-cancellations)."

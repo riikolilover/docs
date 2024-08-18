@@ -2,7 +2,6 @@
 title: generate query-help
 versions: # DO NOT MANUALLY EDIT. CHANGES WILL BE OVERWRITTEN BY A 🤖
   fpt: '*'
-  ghae: '*'
   ghec: '*'
   ghes: '*'
 topics:
@@ -40,12 +39,12 @@ Generate end-user query help from .qhelp files.
 
 \[Mandatory] Query help files to render. Each argument is one of:
 
-- A .qhelp file to render.
-- A .ql file with a corresponding .qhelp file to render.
-- A directory that will be searched recursively for .ql files with
+* A .qhelp file to render.
+* A .ql file with a corresponding .qhelp file to render.
+* A directory that will be searched recursively for .ql files with
   corresponding .qhelp files.
-- A .qls file that defines a particular set of queries.
-- The basename of a "well-known" .qls file exported by one of the
+* A .qls file that defines a particular set of queries.
+* The basename of a "well-known" .qls file exported by one of the
   installed QL packs.
 
 #### `--format=<format>`
@@ -86,6 +85,11 @@ How to handle warnings from the query help renderer. One of:
 `show` _(default)_: Print warnings but continue with rendering.
 
 `error`: Treat warnings as errors.
+
+#### `--no-sarif-minify`
+
+\[SARIF formats only] Produce pretty-printed SARIF output. By default,
+SARIF output is minified to reduce the size of the output file.
 
 ### Options for finding QL packs (which may be necessary to resolve query suites)
 

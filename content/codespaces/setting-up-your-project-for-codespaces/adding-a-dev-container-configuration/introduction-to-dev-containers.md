@@ -42,8 +42,8 @@ If you create a codespace from a repository without a `devcontainer.json` file, 
 The `devcontainer.json` file is usually located in the `.devcontainer` directory of your repository. Alternatively, you can locate it directly in the root of the repository, in which case the file name must begin with a period: `.devcontainer.json`.
 
 If you want to have a choice of dev container configurations in your repository, any alternatives to the  `.devcontainer/devcontainer.json` (or `.devcontainer.json`) file must be located in their own subdirectory at the path `.devcontainer/SUBDIRECTORY/devcontainer.json`. For example, you could have a choice of two configurations:
-- `.devcontainer/database-dev/devcontainer.json`
-- `.devcontainer/gui-dev/devcontainer.json`
+* `.devcontainer/database-dev/devcontainer.json`
+* `.devcontainer/gui-dev/devcontainer.json`
 
 When you have multiple `devcontainer.json` files in your repository, each codespace is created from only one of the configurations. Settings cannot be imported or inherited between `devcontainer.json` files. If a `devcontainer.json` file in a custom subdirectory has dependent files, such as the Dockerfile or scripts that are run by commands in the `devcontainer.json` file, it's recommended that you co-locate these files in the same subdirectory.
 
@@ -77,26 +77,34 @@ The following example uses four instructions:
 
 `ARG` defines a build-time variable.
 
-`FROM` specifies the parent image on which the generated Docker image will be based.
+`FROM` specifies the parent image on which the generated Docker image will be based. If a base image policy has been configured, allowing only certain images to be used, the specified image must match one of the image references in the policy. If it does not, codespaces for this repository will be created in recovery mode. For more information, see "[AUTOTITLE](/codespaces/managing-codespaces-for-your-organization/restricting-the-base-image-for-codespaces)."
 
-`COPY` copies a file and adds it to the filesystem.
+`COPY` copies a file from the repository and adds it to the filesystem of the codespace.
 
 `RUN` updates package lists and runs a script. You can also use a `RUN` instruction to install software, as shown by the commented out instructions. To run multiple commands, use `&&` to combine the commands into a single `RUN` statement.
 
 ```dockerfile copy
-ARG VARIANT="16-buster"
-FROM mcr.microsoft.com/vscode/devcontainers/javascript-node:0-${VARIANT}
+ARG VARIANT="16"
+FROM mcr.microsoft.com/devcontainers/javascript-node:1-${VARIANT}
 
-# [Optional] Uncomment if you want to install an additional version of node using nvm
-# ARG EXTRA_NODE_VERSION=10
-# RUN su node -c "source /usr/local/share/nvm/nvm.sh && nvm install ${EXTRA_NODE_VERSION}"
+RUN apt-get update && export DEBIAN_FRONTEND=noninteractive \
+    && apt-get -y install --no-install-recommends bundler
 
-# [Optional] Uncomment if you want to install more global node modules
-# RUN su node -c "npm install -g <your-package-list-here>"
+# [Optional] Uncomment if you want to install an additional version
+#  of node using nvm
+# ARG EXTRA_NODE_VERSION=18
+# RUN su node -c "source /usr/local/share/nvm/nvm.sh \
+#    && nvm install ${EXTRA_NODE_VERSION}"
 
-COPY library-scripts/github-debian.sh /tmp/library-scripts/
-RUN apt-get update && bash /tmp/library-scripts/github-debian.sh
+COPY ./script-in-your-repo.sh /tmp/scripts/script-in-codespace.sh
+RUN apt-get update && bash /tmp/scripts/script-in-codespace.sh
 ```
+
+{% note %}
+
+**Note**: In the above example, the script that's copied to the codespace (`script-in-your-repo.sh`) must exist in your repository.
+
+{% endnote %}
 
 For more information about Dockerfile instructions, see "[Dockerfile reference](https://docs.docker.com/engine/reference/builder)" in the Docker documentation.
 
@@ -163,14 +171,14 @@ You can add a predefined dev container configuration either while working in a c
 
 If none of the predefined configurations meets your needs, you can create a custom configuration by writing your own `devcontainer.json` file.
 
-- If you're adding a single `devcontainer.json` file that will be used by everyone who creates a codespace from your repository, create the file within a `.devcontainer` directory at the root of the repository.
-- If you want to offer users a choice of configuration, you can create multiple custom `devcontainer.json` files, each located within a separate subdirectory of the `.devcontainer` directory.
+* If you're adding a single `devcontainer.json` file that will be used by everyone who creates a codespace from your repository, create the file within a `.devcontainer` directory at the root of the repository.
+* If you want to offer users a choice of configuration, you can create multiple custom `devcontainer.json` files, each located within a separate subdirectory of the `.devcontainer` directory.
 
    {% note %}
 
    **Notes**:
-  - You can't locate your `devcontainer.json` files in directories more than one level below `.devcontainer`. For example, a file at `.devcontainer/teamA/devcontainer.json` will work, but `.devcontainer/teamA/testing/devcontainer.json` will not.
-  - {% data reusables.codespaces.configuration-choice-templates %} For more information, see "[AUTOTITLE](/codespaces/setting-up-your-project-for-codespaces/setting-up-your-repository/setting-up-a-template-repository-for-github-codespaces)."
+  * You can't locate your `devcontainer.json` files in directories more than one level below `.devcontainer`. For example, a file at `.devcontainer/teamA/devcontainer.json` will work, but `.devcontainer/teamA/testing/devcontainer.json` will not.
+  * {% data reusables.codespaces.configuration-choice-templates %} For more information, see "[AUTOTITLE](/codespaces/setting-up-your-project-for-codespaces/setting-up-your-repository/setting-up-a-template-repository-for-github-codespaces)."
 
    {% endnote %}
 
@@ -222,8 +230,8 @@ If a setting is defined in multiple scopes, Workspace settings take priority, th
 
 You can define default interface settings for {% data variables.product.prodname_vscode_shortname %} in two places.
 
-- Interface settings defined in the `.vscode/settings.json` file in your repository are applied as Workspace-scoped settings in the codespace.
-- Interface settings defined in the `settings` key in the `devcontainer.json` file are applied as Remote [Codespaces]-scoped settings in the codespace.
+* Interface settings defined in the `.vscode/settings.json` file in your repository are applied as Workspace-scoped settings in the codespace.
+* Interface settings defined in the `settings` key in the `devcontainer.json` file are applied as Remote [Codespaces]-scoped settings in the codespace.
 
 ## Applying configuration changes to a codespace
 
@@ -238,4 +246,4 @@ Changes to a configuration will be applied the next time you create a codespace.
 
 ## Further reading
 
-- "[AUTOTITLE](/codespaces/prebuilding-your-codespaces)"
+* "[AUTOTITLE](/codespaces/prebuilding-your-codespaces)"

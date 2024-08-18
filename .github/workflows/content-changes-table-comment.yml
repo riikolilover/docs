@@ -27,6 +27,7 @@ on:
       - synchronize
     paths:
       - 'content/**'
+      - 'data/reusables/**'
 
 permissions:
   contents: read
@@ -45,7 +46,7 @@ jobs:
       PR_NUMBER: ${{ github.event.pull_request.number || inputs.PR_NUMBER }}
     steps:
       - name: check out repo content
-        uses: actions/checkout@3df4ab11eba7bda6032a0b82a6bb43b11571feac # v4.0.0
+        uses: actions/checkout@b4ffde65f46336ab88eb53be808477a3936bae11 # v4.1.1
 
       - name: Get preview app info
         env:
@@ -62,10 +63,10 @@ jobs:
           APP_URL: ${{ env.APP_URL }}
           BASE_SHA: ${{ github.event.pull_request.base.sha || inputs.BASE_SHA }}
           HEAD_SHA: ${{ github.event.pull_request.head.sha || inputs.HEAD_SHA }}
-        run: src/workflows/content-changes-table-comment.js
+        run: npm run content-changes-table-comment
 
       - name: Find content directory changes comment
-        uses: peter-evans/find-comment@f4499a714d59013c74a08789b48abe4b704364a0
+        uses: peter-evans/find-comment@3eae4d37986fb5a8592848f6a574fdf654e61f9e
         id: findComment
         with:
           issue-number: ${{ github.event.pull_request.number || inputs.PR_NUMBER }}
@@ -74,7 +75,7 @@ jobs:
 
       - name: Update comment
         if: ${{ steps.changes.outputs.changesTable != '' }}
-        uses: peter-evans/create-or-update-comment@3383acd359705b10cb1eeef05c0e88c056ea4666
+        uses: peter-evans/create-or-update-comment@71345be0265236311c031f5c7866368bd1eff043
         with:
           comment-id: ${{ steps.findComment.outputs.comment-id }}
           issue-number: ${{ github.event.pull_request.number || inputs.PR_NUMBER }}

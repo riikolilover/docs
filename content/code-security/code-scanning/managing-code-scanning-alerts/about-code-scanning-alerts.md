@@ -5,7 +5,6 @@ product: '{% data reusables.gated-features.code-scanning %}'
 versions:
   fpt: '*'
   ghes: '*'
-  ghae: '*'
   ghec: '*'
 redirect_from:
   - /code-security/code-scanning/automatically-scanning-your-code-for-vulnerabilities-and-errors/about-code-scanning-alerts
@@ -16,14 +15,19 @@ topics:
   - CodeQL
 ---
 
-{% data reusables.code-scanning.beta %}
 {% data reusables.code-scanning.enterprise-enable-code-scanning %}
 
 ## About alerts from {% data variables.product.prodname_code_scanning %}
 
-You can configure {% data variables.product.prodname_code_scanning %} to check the code in a repository using the default {% data variables.product.prodname_codeql %} analysis, a third-party analysis, or multiple types of analysis. When the analysis is complete, the resulting alerts are displayed alongside each other in the security view of the repository. Results from third-party tools or from custom queries may not include all of the properties that you see for alerts detected by {% data variables.product.company_short %}'s default {% data variables.product.prodname_codeql %} analysis. For more information, see {% ifversion code-scanning-without-workflow %}"[AUTOTITLE](/code-security/code-scanning/enabling-code-scanning/configuring-default-setup-for-code-scanning)" and {% endif %}"[AUTOTITLE](/code-security/code-scanning/creating-an-advanced-setup-for-code-scanning/configuring-advanced-setup-for-code-scanning)."
+You can configure {% data variables.product.prodname_code_scanning %} to check the code in a repository using the default {% data variables.product.prodname_codeql %} analysis, a third-party analysis, or multiple types of analysis. When the analysis is complete, the resulting alerts are displayed alongside each other in the security view of the repository. Results from third-party tools or from custom queries may not include all of the properties that you see for alerts detected by {% data variables.product.company_short %}'s default {% data variables.product.prodname_codeql %} analysis. For more information, see "[AUTOTITLE](/code-security/code-scanning/enabling-code-scanning/configuring-default-setup-for-code-scanning)" and "[AUTOTITLE](/code-security/code-scanning/creating-an-advanced-setup-for-code-scanning/configuring-advanced-setup-for-code-scanning)."
 
 By default, {% data variables.product.prodname_code_scanning %} analyzes your code periodically on the default branch and during pull requests. For information about managing alerts on a pull request, see "[AUTOTITLE](/code-security/code-scanning/managing-code-scanning-alerts/triaging-code-scanning-alerts-in-pull-requests)."
+
+{% ifversion code-scanning-autofix %}
+
+You can use {% data variables.product.prodname_copilot_autofix %} to generate fixes automatically for {% data variables.product.prodname_code_scanning %} alerts from {% data variables.product.prodname_codeql %} analysis. For more information, see "[AUTOTITLE](/code-security/code-scanning/managing-code-scanning-alerts/managing-code-scanning-alerts-for-your-repository#generating-suggested-fixes-for-code-scanning-alerts)."
+
+{% endif %}
 
 {% data reusables.code-scanning.audit-code-scanning-events %}
 
@@ -33,11 +37,8 @@ Each alert highlights a problem with the code and the name of the tool that iden
 
 {% data reusables.code-scanning.alert-default-branch %}
 
-{% ifversion fpt or ghec or ghes > 3.8 %}
 ![Screenshot showing the elements of a {% data variables.product.prodname_code_scanning %} alert, including the title of the alert and relevant lines of code at left and the severity level, affected branches, and weaknesses at right. ](/assets/images/help/repository/code-scanning-alert.png)
-{% else %}
-![Screenshot showing the elements of a {% data variables.product.prodname_code_scanning %} alert, including the title of the alert and relevant lines of code at left and the severity level, affected branches, and weaknesses at right.](/assets/images/enterprise/code-security/code-scanning-alert.png)
-{% endif %}
+
 If you configure {% data variables.product.prodname_code_scanning %} using {% data variables.product.prodname_codeql %}, you can also find data-flow problems in your code. Data-flow analysis finds potential security issues in code, such as: using data insecurely, passing dangerous arguments to functions, and leaking sensitive information.
 
 When {% data variables.product.prodname_code_scanning %} reports data-flow alerts, {% data variables.product.prodname_dotcom %} shows you how data moves through the code. {% data variables.product.prodname_code_scanning_caps %} allows you to identify the areas of your code that leak sensitive information, and that could be the entry point for attacks by malicious users.
@@ -68,10 +69,10 @@ If you use multiple configurations to analyze a file, any problems detected by t
 
 {% data variables.product.product_name %} assigns a category label to alerts that are not found in application code. The label relates to the location of the alert.
 
-- Generated: Code generated by the build process
-- Test: Test code
-- Library: Library or third-party code
-- Documentation: Documentation
+* Generated: Code generated by the build process
+* Test: Test code
+* Library: Library or third-party code
+* Documentation: Documentation
 
 {% data variables.product.prodname_code_scanning_caps %} categorizes files by file path. You cannot manually categorize source files.
 
@@ -97,16 +98,28 @@ When you click through to see details for the alert, you can see that the file p
 
 The severity level for a {% data variables.product.prodname_code_scanning %} alert indicates how much risk the problem adds to your codebase.
 
-- **Severity.** All {% data variables.product.prodname_code_scanning %} alerts have a level of `Error`, `Warning`, or `Note`.
-- **Security severity.** Each security alert found using {% data variables.product.prodname_codeql %} also has a security severity level of `Critical`, `High`, `Medium`, or `Low`.
+* **Severity.** All {% data variables.product.prodname_code_scanning %} alerts have a level of `Error`, `Warning`, or `Note`.
+* **Security severity.** Each security alert found using {% data variables.product.prodname_codeql %} also has a security severity level of `Critical`, `High`, `Medium`, or `Low`.
 
 When an alert has a security severity level, {% data variables.product.prodname_code_scanning %} displays and uses this level in preference to the `severity`. Security severity levels follow the industry-standard Common Vulnerability Scoring System (CVSS) that is also used for advisories in the {% data variables.product.prodname_advisory_database %}.  For more information, see [CVSS: Qualitative Severity Rating Scale](https://www.first.org/cvss/v3.1/specification-document#Qualitative-Severity-Rating-Scale).
 
 ### Pull request check failures for {% data variables.product.prodname_code_scanning %} alerts
 
+{% ifversion code-scanning-merge-protection-rulesets %}
+
+You can use rulesets to prevent pull requests from being merged when one of the following conditions is met:
+
+{% data reusables.code-scanning.merge-protection-rulesets-conditions %}
+
+For more information, see "[AUTOTITLE](/code-security/code-scanning/managing-your-code-scanning-configuration/set-code-scanning-merge-protection)." For more general information about rulesets, see "[AUTOTITLE](/repositories/configuring-branches-and-merges-in-your-repository/managing-rulesets/about-rulesets)."
+
+{% else %}
+
 {% data reusables.code-scanning.pull-request-checks %}
 
-You can edit which severity and security severity alert levels cause a check failure. For more information, see {% ifversion code-scanning-without-workflow %}"[AUTOTITLE](/code-security/code-scanning/managing-your-code-scanning-configuration/editing-your-configuration-of-default-setup#defining-the-alert-severities-that-cause-a-check-failure-for-a-pull-request){% else %}"[AUTOTITLE](/code-security/code-scanning/creating-an-advanced-setup-for-code-scanning/customizing-your-advanced-setup-for-code-scanning#defining-the-alert-severities-that-cause-a-check-failure-for-a-pull-request){% endif %}."
+You can edit which severity and security severity alert levels cause a check failure. For more information, see "[AUTOTITLE](/code-security/code-scanning/managing-your-code-scanning-configuration/editing-your-configuration-of-default-setup#defining-the-alert-severities-that-cause-a-check-failure-for-a-pull-request)."
+
+{% endif %}
 
 ### Calculation of security severity levels
 

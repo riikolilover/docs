@@ -8,6 +8,7 @@ import { noCacheControl } from '#src/frame/middleware/cache-control.js'
 import { getJsonValidator } from '#src/tests/lib/validate-json-schema.js'
 import { formatErrors } from './lib/middleware-errors.js'
 import { publish as _publish } from './lib/hydro.js'
+import { analyzeComment } from './analyze-comment.js'
 
 const router = express.Router()
 const OMIT_FIELDS = ['type']
@@ -68,6 +69,13 @@ router.post(
       return res.status(400).json(isProd ? {} : validate.errors)
     }
 
+    if (type === 'survey' && req.body.survey_comment) {
+      req.body.survey_rating = await getSurveyCommentRating({
+        comment: req.body.survey_comment,
+        language: req.body.context.path_language,
+      })
+    }
+
     await publish({
       schema: hydroNames[type],
       value: omit(req.body, OMIT_FIELDS),
@@ -76,5 +84,14 @@ router.post(
     return res.json({})
   }),
 )
+
+async function getSurveyCommentRating({ comment, language }) {
+  if (!comment || !comment.trim()) {
+    return
+  }
+
+  const { rating } = await analyzeComment(comment, language)
+  return rating
+}
 
 export default router

@@ -8,7 +8,6 @@ redirect_from:
 versions:
   fpt: '*'
   ghes: '*'
-  ghae: '*'
   ghec: '*'
 topics:
   - Organizations
@@ -17,6 +16,7 @@ children:
   - /roles-in-an-organization
   - /about-custom-organization-roles
   - /managing-custom-organization-roles
+  - /using-organization-roles
   - /maintaining-ownership-continuity-for-your-organization
   - /adding-a-billing-manager-to-your-organization
   - /removing-a-billing-manager-from-your-organization

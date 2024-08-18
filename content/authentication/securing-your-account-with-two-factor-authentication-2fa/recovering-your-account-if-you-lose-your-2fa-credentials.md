@@ -21,7 +21,7 @@ shortTitle: Recover an account with 2FA
 
 **Warnings**:
 
-- {% data reusables.two_fa.support-may-not-help %}
+* {% data reusables.two_fa.support-may-not-help %}
 
 {% endwarning %}
 
@@ -52,7 +52,7 @@ Use one of your recovery codes to automatically regain entry into your account. 
 
 ## Authenticating with a passkey
 
-If you have added a passkey to your account, you can use your passkey to automatically regain access to your account. Passkeys satisfy both password and 2FA requirements, so you don't need to know your password in order to recover your account. For more information, see "[AUTOTITLE](/authentication/authenticating-with-a-passkey/about-passkeys)."
+If you have added a passkey to your account, you can use your passkey to automatically regain access to your account. Passkeys satisfy both password and 2FA requirements, so you don't need to know your password in order to recover your account. See "[AUTOTITLE](/authentication/authenticating-with-a-passkey/about-passkeys)."
 
 {% endif %}
 
@@ -91,9 +91,8 @@ You can use your two-factor authentication credentials or two-factor authenticat
     **Warning**: {% data reusables.accounts.you-must-know-your-password %}
 
     {% endwarning %}
-1. Under "Having problems?", click **Use a recovery code or request a reset**.
+1. Under "Having problems?", click **Use a recovery code or begin 2FA account recovery**.
 
-   ![Screenshot of the 2FA page at sign in. A link with the text "Use a recovery code or request a reset" is outlined in orange.](/assets/images/help/2fa/use-recovery-code-or-reset-link.png)
 {% ifversion 2fa-reconfiguration-inline-update %}
 1. Under "Locked out?", click **Recover your account or unlink an email address**.
 {% else %}
@@ -130,4 +129,4 @@ Alternatively, if no recovery methods are available, you can choose to unlink yo
 
 ## Further reading
 
-- "[AUTOTITLE](/authentication/securing-your-account-with-two-factor-authentication-2fa/configuring-two-factor-authentication-recovery-methods)"
+* "[AUTOTITLE](/authentication/securing-your-account-with-two-factor-authentication-2fa/configuring-two-factor-authentication-recovery-methods)"

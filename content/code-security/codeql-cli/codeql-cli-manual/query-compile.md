@@ -2,7 +2,6 @@
 title: query compile
 versions: # DO NOT MANUALLY EDIT. CHANGES WILL BE OVERWRITTEN BY A 🤖
   fpt: '*'
-  ghae: '*'
   ghec: '*'
   ghes: '*'
 topics:
@@ -45,10 +44,10 @@ output options are mostly for debugging.
 
 \[Mandatory] Queries to compile. Each argument is one of:
 
-- A .ql file to compile.
-- A directory which will be searched recursively for .ql files.
-- A .qls file that defines a particular set of queries.
-- The basename of a "well-known" .qls file exported by one of the
+* A .ql file to compile.
+* A directory which will be searched recursively for .ql files.
+* A .qls file that defines a particular set of queries.
+* The basename of a "well-known" .qls file exported by one of the
   installed QL packs.
 
 #### `-n, --check-only`

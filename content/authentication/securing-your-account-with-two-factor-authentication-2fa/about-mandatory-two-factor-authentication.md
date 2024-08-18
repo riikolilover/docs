@@ -14,12 +14,12 @@ shortTitle: About mandatory 2FA
 ## About eligibility for mandatory 2FA
 
 Your account is selected for mandatory 2FA if you have taken some action on {% data variables.product.product_name %} that shows you are a contributor. Eligible actions include:
-- Publishing an app or action for others.
-- Creating a release for your repository.
-- Contributing to specific high-importance repositories, such as [the projects tracked by the Open Source Security Foundation](https://github.com/ossf/wg-securing-critical-projects#current-work).
-- Being an administrator of a high-importance repository.
-- Being an organization owner for an organization containing repositories or other users.
-- Being an enterprise administrator.
+* Publishing an app or action for others.
+* Creating a release for your repository.
+* Contributing to specific high-importance repositories, such as [the projects tracked by the Open Source Security Foundation](https://github.com/ossf/wg-securing-critical-projects#current-work).
+* Being an administrator of a high-importance repository.
+* Being an organization owner for an organization containing repositories or other users.
+* Being an enterprise administrator.
 
 {% data variables.product.prodname_dotcom %} is continually assessing improvements to our account security features and 2FA requirements, so these criteria may change over time.
 
@@ -31,7 +31,7 @@ Your account is selected for mandatory 2FA if you have taken some action on {% d
 
 ### About mandatory 2FA for organizations and enterprises
 
-Mandatory 2FA is required by {% data variables.product.prodname_dotcom %} itself to improve security for both individual developers and the broader software development ecosystem. Your administrator may also require 2FA enablement as a requirement to join their organization or enterprise, but those requirements are separate from this program.
+Mandatory 2FA is required by {% data variables.product.prodname_dotcom %} itself to improve security for both individual developers and the broader software development ecosystem. Your administrator may also require 2FA enablement as a requirement to join their organization or enterprise, but those requirements are separate from this program. To find which users have enabled 2FA or are required to do so, see "[AUTOTITLE](/admin/managing-accounts-and-repositories/managing-users-in-your-enterprise/viewing-people-in-your-enterprise#viewing-whether-members-in-your-enterprise-have-2fa-enabled)" or "[AUTOTITLE](/organizations/keeping-your-organization-secure/managing-two-factor-authentication-for-your-organization/viewing-whether-users-in-your-organization-have-2fa-enabled)."
 
 Your account's eligibility for mandatory 2FA **does not** impact the eligibility of other individuals. For example, if you are an organization owner, and your account is eligible for mandatory 2FA, that does not impact the eligibility of other accounts within your organization.
 
@@ -53,9 +53,9 @@ We recommend setting up a time-based one-time password (TOTP) app as your primar
 
 Currently, we don't support passkeys or security keys as primary 2FA methods since they are easy to lose and do not support sync across a wide enough range of devices. As passkeys are more widely adopted and sync support is more prevalent, we will support them as a primary method.
 
-- [About TOTP apps and mandatory 2FA](#about-totp-apps-and-mandatory-2fa)
-- [About SAML SSO and mandatory 2FA](#about-saml-sso-and-mandatory-2fa)
-- [About email verification and mandatory 2FA](#about-email-verification-and-mandatory-2fa)
+* [About TOTP apps and mandatory 2FA](#about-totp-apps-and-mandatory-2fa)
+* [About SAML SSO and mandatory 2FA](#about-saml-sso-and-mandatory-2fa)
+* [About email verification and mandatory 2FA](#about-email-verification-and-mandatory-2fa)
 
 {% note %}
 

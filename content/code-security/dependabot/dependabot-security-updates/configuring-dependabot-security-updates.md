@@ -25,14 +25,13 @@ topics:
 ---
 <!--Marketing-LINK: From home page "Learn more about Dependabot".-->
 
-{% data reusables.dependabot.beta-security-and-version-updates %}
 {% data reusables.dependabot.enterprise-enable-dependabot %}
 
 ## About configuring {% data variables.product.prodname_dependabot_security_updates %}
 
 You can enable {% data variables.product.prodname_dependabot_security_updates %} for any repository that uses {% data variables.product.prodname_dependabot_alerts %} and the dependency graph. For more information, see "[AUTOTITLE](/code-security/dependabot/dependabot-security-updates/about-dependabot-security-updates)."
 
-You can enable or disable {% data variables.product.prodname_dependabot_security_updates %} for an individual repository{% ifversion code-security-multi-repo-enablement %}, for a selection of repositories in an organization,{% endif %} or for all repositories owned by your personal account or organization. For more information about enabling security features in an organization, see "[AUTOTITLE](/code-security/getting-started/securing-your-organization)."
+You can enable or disable {% data variables.product.prodname_dependabot_security_updates %} for an individual repository{% ifversion code-security-multi-repo-enablement %}, for a selection of repositories in an organization,{% endif %} or for all repositories owned by your personal account or organization. For more information about enabling security features in an organization, see {% ifversion security-configurations-ga %}"[AUTOTITLE](/code-security/securing-your-organization)."{% else %}"[AUTOTITLE](/code-security/getting-started/quickstart-for-securing-your-organization)."{% endif %}
 
 {% data reusables.dependabot.dependabot-security-updates-disable-for-alert-rules %}
 
@@ -59,17 +58,15 @@ You can also enable or disable {% data variables.product.prodname_dependabot_sec
 {% data reusables.repositories.navigate-to-code-security-and-analysis %}
 1. Under "Code security and analysis", to the right of "{% data variables.product.prodname_dependabot %} security updates", click **Enable** to enable the feature or **Disable** to disable it. {% ifversion fpt or ghec %}For public repositories, the button is disabled if the feature is always enabled.{% endif %}
 
-{% ifversion dependabot-grouped-security-updates %}
+{% ifversion dependabot-grouped-security-updates-config %}
 
 ## Grouping {% data variables.product.prodname_dependabot_security_updates %} into a single pull request
 
-{% data reusables.dependabot.dependabot-grouped-security-updates-beta-note %}
-
 To reduce the number of pull requests you may be seeing, you can enable grouped security updates for your repository or organization. When this is enabled, {% data variables.product.prodname_dependabot %} will group security updates into one pull request for each package ecosystem. In order to use grouped security updates, you must first enable the following features:
 
-- **Dependency graph**. For more information, see "[AUTOTITLE](/code-security/supply-chain-security/understanding-your-software-supply-chain/configuring-the-dependency-graph)."
-- **{% data variables.product.prodname_dependabot_alerts %}**. For more information, see "[AUTOTITLE](/code-security/dependabot/dependabot-alerts/configuring-dependabot-alerts)."
-- **{% data variables.product.prodname_dependabot_security_updates %}**. For more information, see "[AUTOTITLE](/code-security/dependabot/dependabot-security-updates/configuring-dependabot-security-updates)."
+* **Dependency graph**. For more information, see "[AUTOTITLE](/code-security/supply-chain-security/understanding-your-software-supply-chain/configuring-the-dependency-graph)."
+* **{% data variables.product.prodname_dependabot_alerts %}**. For more information, see "[AUTOTITLE](/code-security/dependabot/dependabot-alerts/configuring-dependabot-alerts)."
+* **{% data variables.product.prodname_dependabot_security_updates %}**. For more information, see "[AUTOTITLE](/code-security/dependabot/dependabot-security-updates/configuring-dependabot-security-updates)."
 
 {% note %}
 
@@ -77,7 +74,12 @@ To reduce the number of pull requests you may be seeing, you can enable grouped 
 
 {% endnote %}
 
+{% data reusables.dependabot.dependabot-grouped-security-updates-how-enable %}
+{% data reusables.dependabot.dependabot-grouped-security-updates-order %}
+
 ### Enabling or disabling grouped {% data variables.product.prodname_dependabot_security_updates %} for an individual repository
+
+Repository administrators can enable or disable grouped security updates for their repository. Changing the repository setting will override any default organization settings. {% data reusables.dependabot.dependabot-grouped-security-updates-yaml-override %}
 
 {% data reusables.repositories.navigate-to-repo %}
 {% data reusables.repositories.sidebar-settings %}
@@ -86,33 +88,46 @@ To reduce the number of pull requests you may be seeing, you can enable grouped 
 
 ### Enabling or disabling grouped {% data variables.product.prodname_dependabot_security_updates %} for an organization
 
-Organization owners can enable or disable grouped security updates for all repositories in their organization. However, individual repositories can update their settings to override the default organization settings.
+{% ifversion security-configurations-ga %} You can enable grouped {% data variables.product.prodname_dependabot_security_updates %} into a single pull request. For more information, see "[AUTOTITLE](/code-security/securing-your-organization/enabling-security-features-in-your-organization/configuring-global-security-settings-for-your-organization#grouping-dependabot-security-updates)."
+
+{% elsif security-configurations-beta-and-pre-beta %}
+
+Organization owners can enable or disable grouped security updates for all repositories in their organization. However, repository administrators within the organization can update the settings for their repositories to override the default organization settings. {% data reusables.dependabot.dependabot-grouped-security-updates-yaml-override %}
 
 {% data reusables.profile.access_org %}
 {% data reusables.profile.org_settings %}
 {% data reusables.organizations.security-and-analysis %}
+
+{% ifversion security-configurations-beta-only %}
+    {% data reusables.security-configurations.changed-org-settings-global-settings-callout %} For next steps on enabling or disabling grouped {% data variables.product.prodname_dependabot_security_updates %} in your organization with {% data variables.product.prodname_global_settings %}, see "[AUTOTITLE](/code-security/securing-your-organization/enabling-security-features-in-your-organization/configuring-global-security-settings-for-your-organization#grouping-dependabot-security-updates)."
+{% endif %}
+
 1. Under "Code security and analysis", to the right of "Grouped security updates", click **Disable all** or **Enable all**.
 1. Optionally, to enable grouped {% data variables.product.prodname_dependabot_security_updates %} for new repositories in your organization, select **Automatically enable for new repositories**.
 
 {% endif %}
+{% endif %}
 
 ## Overriding the default behavior with a configuration file
 
-You can override the default behavior of {% data variables.product.prodname_dependabot_security_updates %} by adding a `dependabot.yml` file to your repository. For more information, see "[AUTOTITLE](/code-security/dependabot/dependabot-version-updates/configuration-options-for-the-dependabot.yml-file)."
+You can override the default behavior of {% data variables.product.prodname_dependabot_security_updates %} by adding a `dependabot.yml` file to your repository. {% ifversion dependabot-grouped-security-updates-config %}With a `dependabot.yml` file, you can have more granular control of grouping, and override the default behavior of {% data variables.product.prodname_dependabot_security_updates %} settings.{% endif %}
 
-{% ifversion dependabot-grouped-security-updates %}{% note %}
+{% ifversion dependabot-grouped-security-updates-config %}
+Use the `groups` option with the `applies-to: security-updates` key to create sets of dependencies (per package manager), so that {% data variables.product.prodname_dependabot %} opens a single pull request to update multiple dependencies at the same time. You can define groups by package name (the `patterns` and `exclude-patterns` keys), dependency type (`dependency-type` key), and SemVer (the `update-types` key).
 
-**Note:** If you use grouped security updates, you cannot use the configuration file to customize the default grouping behavior for {% data variables.product.prodname_dependabot_security_updates %}. The `groups` option in the `dependabot.yml` file only applies to grouped version updates.
+{% data reusables.dependabot.dependabot-version-updates-groups-match-first %}
+{% endif %}
 
-{% endnote %}{% endif %}
+If you only require _security_ updates and want to exclude _version_ updates, you can set `open-pull-requests-limit` to `0` in order to prevent version updates for a given `package-ecosystem`.
 
-If you only require security updates and want to exclude version updates, you can set `open-pull-requests-limit` to `0` in order to prevent version updates for a given `package-ecosystem`. For more information, see "[AUTOTITLE](/code-security/dependabot/dependabot-version-updates/configuration-options-for-the-dependabot.yml-file#open-pull-requests-limit)."
+For more information about the configuration options available for security updates, see "[AUTOTITLE](/code-security/dependabot/dependabot-version-updates/configuration-options-for-the-dependabot.yml-file)."
 
 ```yaml
 # Example configuration file that:
 #  - Has a private registry
 #  - Ignores lodash dependency
 #  - Disables version-updates
+{% ifversion dependabot-grouped-security-updates-config %}#  - Defines a group by package name, for security updates for golang dependencies{%- endif %}
 
 version: 2
 registries:
@@ -125,13 +140,19 @@ updates:
     directory: "/src/npm-project"
     schedule:
       interval: "daily"
+    # For Lodash, ignore all updates
     ignore:
       - dependency-name: "lodash"
-        # For Lodash, ignore all updates
     # Disable version updates for npm dependencies
     open-pull-requests-limit: 0
     registries:
       - example
+  {% ifversion dependabot-grouped-security-updates-config %}- package-ecosystem: "gomod"
+    groups:
+      golang:
+        applies-to: security-updates
+        patterns:
+          - "golang.org*"{% endif %}
 ```
 
 {% note %}
@@ -140,10 +161,8 @@ updates:
 
 {% endnote %}
 
-For more information about the configuration options available for security updates, see the table in "[AUTOTITLE](/code-security/dependabot/dependabot-version-updates/configuration-options-for-the-dependabot.yml-file#configuration-options-for-the-dependabotyml-file)."
-
 ## Further reading
 
-- "[AUTOTITLE](/code-security/dependabot/dependabot-alerts/about-dependabot-alerts)"
-- "[AUTOTITLE](/code-security/dependabot/dependabot-alerts/configuring-dependabot-alerts)"
-- "[AUTOTITLE](/code-security/supply-chain-security/understanding-your-software-supply-chain/about-the-dependency-graph#supported-package-ecosystems)"
+* "[AUTOTITLE](/code-security/dependabot/dependabot-alerts/about-dependabot-alerts)"
+* "[AUTOTITLE](/code-security/dependabot/dependabot-alerts/configuring-dependabot-alerts)"
+* "[AUTOTITLE](/code-security/supply-chain-security/understanding-your-software-supply-chain/about-the-dependency-graph#supported-package-ecosystems)"

@@ -2,7 +2,6 @@
 title: query run
 versions: # DO NOT MANUALLY EDIT. CHANGES WILL BE OVERWRITTEN BY A 🤖
   fpt: '*'
-  ghae: '*'
   ghec: '*'
   ghes: '*'
 topics:
@@ -357,6 +356,14 @@ To authenticate to GitHub Enterprise Server Container registries, pass
 variable.
 
 This overrides the GITHUB\_TOKEN environment variable.
+
+### Options to control the extension packs
+
+#### `--model-packs=<`<name@range>>...
+
+A list of CodeQL pack names, each with an optional version range, to be
+used as model packs to customize the queries that are about to be
+evaluated.
 
 ### Common options
 

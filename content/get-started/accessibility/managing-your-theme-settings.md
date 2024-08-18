@@ -3,7 +3,6 @@ title: Managing your theme settings
 intro: 'You can manage how {% data variables.product.product_name %} looks to you by setting a theme preference that either follows your system settings or always uses a light or dark mode.'
 versions:
   fpt: '*'
-  ghae: '*'
   ghes: '*'
   ghec: '*'
 topics:
@@ -21,7 +20,7 @@ For choice and flexibility in how and when you use {% data variables.product.pro
 
 You may want to use a dark theme to reduce power consumption on certain devices, to reduce eye strain in low-light conditions, or because you prefer how the theme looks.
 
-If you have low vision, you may benefit from a high contrast theme, with greater contrast between foreground and background elements.{% ifversion fpt or ghae or ghec %} If you have colorblindness, you may benefit from our light and dark colorblind themes.
+If you have low vision, you may benefit from a high contrast theme, with greater contrast between foreground and background elements.{% ifversion fpt or ghec %} If you have colorblindness, you may benefit from our light and dark colorblind themes.
 
 {% endif %}
 
@@ -33,16 +32,16 @@ If you have low vision, you may benefit from a high contrast theme, with greater
    ![Screenshot of the "Theme mode" sub-section. A dropdown menu, labeled "Single theme," is highlighted with an orange outline.](/assets/images/help/settings/theme-mode-drop-down-menu.png)
 
 1. Click the theme you'd like to use.
-    - If you chose a single theme, click a theme.
+    * If you chose a single theme, click a theme.
 
-    - If you chose to follow your system settings, click a day theme and a night theme.{% ifversion fpt or ghec %}
-    - If you would like to choose a theme which is currently in public beta, you will first need to enable it with feature preview. For more information, see "[AUTOTITLE](/get-started/using-github/exploring-early-access-releases-with-feature-preview)."{% endif %}
+    * If you chose to follow your system settings, click a day theme and a night theme.{% ifversion fpt or ghec %}
+    * If you would like to choose a theme which is currently in public beta, you will first need to enable it with feature preview. For more information, see "[AUTOTITLE](/get-started/using-github/exploring-early-access-releases-with-feature-preview)."{% endif %}
 
 {% ifversion command-palette %}
 
 {% note %}
 
-**Note:** You can also change your theme settings with the command palette. For more information, see "[AUTOTITLE](/get-started/accessibility/github-command-palette)".
+**Note:** You can also change your theme settings with the command palette. For more information, see "[AUTOTITLE](/get-started/accessibility/github-command-palette)."
 
 {% endnote %}
 
@@ -50,4 +49,4 @@ If you have low vision, you may benefit from a high contrast theme, with greater
 
 ## Further reading
 
-- "[AUTOTITLE](/desktop/configuring-and-customizing-github-desktop/setting-a-theme-for-github-desktop)"
+* "[AUTOTITLE](/desktop/configuring-and-customizing-github-desktop/setting-a-theme-for-github-desktop)"

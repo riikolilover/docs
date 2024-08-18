@@ -7,29 +7,28 @@ redirect_from:
 changelog:
   label: copilot
 introLinks:
-  overview: /copilot/overview-of-github-copilot/about-github-copilot-individual
+  overview: /copilot/about-github-copilot/what-is-github-copilot
   quickstart: /copilot/quickstart
 featuredLinks:
   startHere:
-    - /copilot/using-github-copilot/getting-started-with-github-copilot
+    - /copilot/about-github-copilot/what-is-github-copilot
+    - /copilot/quickstart
   popular:
-    - /billing/managing-billing-for-github-copilot/about-billing-for-github-copilot
-    - /copilot/configuring-github-copilot/configuring-github-copilot-in-your-environment
-    - /copilot/configuring-github-copilot/configuring-github-copilot-settings-on-githubcom
+    - /copilot/using-github-copilot/prompt-engineering-for-github-copilot
+    - /copilot/using-github-copilot/getting-code-suggestions-in-your-ide-with-github-copilot
+    - /copilot/using-github-copilot/asking-github-copilot-questions-in-your-ide
+    - /copilot/using-github-copilot/using-github-copilot-in-the-command-line
 layout: product-landing
 versions:
   feature: copilot
 children:
   - /quickstart
-  - /overview-of-github-copilot
+  - /about-github-copilot
+  - /setting-up-github-copilot
   - /using-github-copilot
-  - /managing-copilot-business
-  - /github-copilot-enterprise
-  - /github-copilot-chat
-  - /github-copilot-in-the-cli
-  - /configuring-github-copilot
+  - /managing-copilot
   - /troubleshooting-github-copilot
+  - /responsible-use-of-github-copilot-features
 topics:
   - Copilot
 ---
-

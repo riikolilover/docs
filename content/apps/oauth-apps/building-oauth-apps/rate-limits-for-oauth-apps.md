@@ -4,7 +4,6 @@ intro: '{% data reusables.shortdesc.rate_limits_apps %}'
 versions:
   fpt: '*'
   ghes: '*'
-  ghae: '*'
   ghec: '*'
 topics:
   - OAuth apps
@@ -47,6 +46,6 @@ For more information, see "[AUTOTITLE](/rest/overview/rate-limits-for-the-rest-a
 
 ## Further reading
 
-- "[AUTOTITLE](/rest/overview/rate-limits-for-the-rest-api)"
-- "[AUTOTITLE](/graphql/overview/resource-limitations)"
-- "[AUTOTITLE](/apps/creating-github-apps/registering-a-github-app/rate-limits-for-github-apps)"
+* "[AUTOTITLE](/rest/overview/rate-limits-for-the-rest-api)"
+* "[AUTOTITLE](/graphql/overview/resource-limitations)"
+* "[AUTOTITLE](/apps/creating-github-apps/registering-a-github-app/rate-limits-for-github-apps)"

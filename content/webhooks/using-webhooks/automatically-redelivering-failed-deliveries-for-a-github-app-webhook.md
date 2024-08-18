@@ -5,7 +5,6 @@ intro: 'You can write a script to handle failed deliveries of a {% data variable
 versions:
   fpt: '*'
   ghes: '*'
-  ghae: '*'
   ghec: '*'
 topics:
   - Webhooks
@@ -20,9 +19,9 @@ This article describes how to write a script to find and redeliver failed delive
 
 This example shows you:
 
-- A script that will find and redeliver failed deliveries for a {% data variables.product.prodname_github_app %} webhook
-- What credentials your script will need, and how to store the credentials securely as {% data variables.product.prodname_actions %} secrets
-- A {% data variables.product.prodname_actions %} workflow that can securely access your credentials and run the script periodically
+* A script that will find and redeliver failed deliveries for a {% data variables.product.prodname_github_app %} webhook
+* What credentials your script will need, and how to store the credentials securely as {% data variables.product.prodname_actions %} secrets
+* A {% data variables.product.prodname_actions %} workflow that can securely access your credentials and run the script periodically
 
 This example uses {% data variables.product.prodname_actions %}, but you can also run this script on your server that handles webhook deliveries. For more information, see "[Alternative methods](#alternative-methods)."
 
@@ -38,10 +37,10 @@ The endpoints to fetch and update the value of environment variables require a {
 1. Store the private key, including `-----BEGIN RSA PRIVATE KEY-----` and `-----END RSA PRIVATE KEY-----`, from the previous step as a {% data variables.product.prodname_actions %} secret in the repository where you want the workflow to run.
 {% ifversion pat-v2 %}
 1. Create a {% data variables.product.pat_generic %} with the following access. For more information, see "[AUTOTITLE](/authentication/keeping-your-account-and-data-secure/managing-your-personal-access-tokens)."
-   - For a {% data variables.product.pat_v2 %}, grant the token:
-     - Write access to the repository variables permission
-     - Access to the repository where this workflow will run
-   - For a {% data variables.product.pat_v1 %}, grant the token the `repo` scope.
+   * For a {% data variables.product.pat_v2 %}, grant the token:
+     * Write access to the repository variables permission
+     * Access to the repository where this workflow will run
+   * For a {% data variables.product.pat_v1 %}, grant the token the `repo` scope.
 {% else %}
 1. Create a {% data variables.product.pat_v1 %} with the `repo` scope. For more information, see "[AUTOTITLE](/authentication/keeping-your-account-and-data-secure/managing-your-personal-access-tokens)."
 {% endif %}
@@ -92,14 +91,14 @@ jobs:
       # - Replace `YOUR_PRIVATE_KEY_SECRET_NAME` with the name of the secret where you stored your private key.
       # - Replace `YOUR_TOKEN_SECRET_NAME` with the name of the secret where you stored your {% data variables.product.pat_generic %}.
       # - Replace `YOUR_LAST_REDELIVERY_VARIABLE_NAME` with the name that you want to use for a configuration variable that will be stored in the repository where this workflow is stored. The name can be any string that contains only alphanumeric characters and `_`, and does not start with `GITHUB_` or a number. For more information, see "[AUTOTITLE](/actions/learn-github-actions/variables#defining-configuration-variables-for-multiple-workflows)."
-      {% ifversion ghes or ghae %}# - Replace `YOUR_HOSTNAME` with the name of {% data variables.location.product_location %}.{% endif %}
+      {% ifversion ghes %}# - Replace `YOUR_HOSTNAME` with the name of {% data variables.location.product_location %}.{% endif %}
       - name: Run script
         env:
           APP_ID: {% raw %}${{ secrets.YOUR_APP_ID_SECRET_NAME }}{% endraw %}
           PRIVATE_KEY: {% raw %}${{ secrets.YOUR_PRIVATE_KEY_SECRET_NAME }}{% endraw %}
           TOKEN: {% raw %}${{ secrets.YOUR_TOKEN_SECRET_NAME }}{% endraw %}
           LAST_REDELIVERY_VARIABLE_NAME: 'YOUR_LAST_REDELIVERY_VARIABLE_NAME'
-          {% ifversion ghes or ghae %}HOSTNAME: 'YOUR_HOSTNAME'{% endif %}
+          {% ifversion ghes %}HOSTNAME: 'YOUR_HOSTNAME'{% endif %}
           WORKFLOW_REPO: {% raw %}${{ github.event.repository.name }}{% endraw %}
           WORKFLOW_REPO_OWNER: {% raw %}${{ github.repository_owner }}{% endraw %}
         run: |
@@ -123,26 +122,26 @@ async function checkAndRedeliverWebhooks() {
   const PRIVATE_KEY = process.env.PRIVATE_KEY;
   const TOKEN = process.env.TOKEN;
   const LAST_REDELIVERY_VARIABLE_NAME = process.env.LAST_REDELIVERY_VARIABLE_NAME;
-  {% ifversion ghes or ghae %}const HOSTNAME = process.env.HOSTNAME;{% endif %}
+  {% ifversion ghes %}const HOSTNAME = process.env.HOSTNAME;{% endif %}
   const WORKFLOW_REPO_NAME = process.env.WORKFLOW_REPO;
   const WORKFLOW_REPO_OWNER = process.env.WORKFLOW_REPO_OWNER;
 
-  // Create an instance of the octokit `App` using the {% ifversion ghes or ghae %}app ID, private key, and hostname{% else %}app ID and private key{% endif %} values that were set in the {% data variables.product.prodname_actions %} workflow.
+  // Create an instance of the octokit `App` using the {% ifversion ghes %}app ID, private key, and hostname{% else %}app ID and private key{% endif %} values that were set in the {% data variables.product.prodname_actions %} workflow.
   //
   // This will be used to make API requests to the webhook-related endpoints.
   const app = new App({
     appId: APP_ID,
-    privateKey: PRIVATE_KEY,{% ifversion ghes or ghae %}
+    privateKey: PRIVATE_KEY,{% ifversion ghes %}
     Octokit: Octokit.defaults({
-      baseUrl: "{% data variables.product.api_url_code %}",
+      baseUrl: "{% data variables.product.rest_url %}",
     }),{% endif %}
   });
 
-  // Create an instance of `Octokit` using the token{% ifversion ghes or ghae %} and hostname{% endif %} values that were set in the {% data variables.product.prodname_actions %} workflow.
+  // Create an instance of `Octokit` using the token{% ifversion ghes %} and hostname{% endif %} values that were set in the {% data variables.product.prodname_actions %} workflow.
   //
   // This will be used to update the configuration variable that stores the last time that this script ran.
-  const octokit = new Octokit({ {% ifversion ghes or ghae %}
-    baseUrl: "{% data variables.product.api_url_code %}",{% endif %}
+  const octokit = new Octokit({ {% ifversion ghes %}
+    baseUrl: "{% data variables.product.rest_url %}",{% endif %}
     auth: TOKEN,
   });
 
@@ -232,10 +231,10 @@ async function fetchWebhookDeliveriesSince({lastWebhookRedeliveryTime, app}) {
   const iterator = app.octokit.paginate.iterator(
     "GET /app/hook/deliveries",
     {
-      per_page: 100,{% ifversion api-date-versioning %}
+      per_page: 100,
       headers: {
         "x-github-api-version": "{{ allVersions[currentVersion].latestApiVersion }}",
-      },{% endif %}
+      },
     }
   );
 
@@ -340,6 +339,6 @@ You can manually trigger your workflow to test the script. For more information,
 
 This example used {% data variables.product.prodname_actions %} to securely store credentials and to run the script on a schedule. However, if you prefer to run this script on your server than handles webhook deliveries, you can:
 
-- Store the credentials in another secure manner, such as a secret manager like [Azure key vault](https://azure.microsoft.com/products/key-vault). You will also need to update the script to access the credentials from their new location.
-- Run the script on a schedule on your server, for example by using a cron job or task scheduler.
-- Update the script to store the last run time somewhere that your server can access and update. If you choose not to store the last run time as a {% data variables.product.prodname_actions %} secret, you do not need to use a {% data variables.product.pat_generic %}, and you can remove the API calls to access and update the configuration variable.
+* Store the credentials in another secure manner, such as a secret manager like [Azure key vault](https://azure.microsoft.com/products/key-vault). You will also need to update the script to access the credentials from their new location.
+* Run the script on a schedule on your server, for example by using a cron job or task scheduler.
+* Update the script to store the last run time somewhere that your server can access and update. If you choose not to store the last run time as a {% data variables.product.prodname_actions %} secret, you do not need to use a {% data variables.product.pat_generic %}, and you can remove the API calls to access and update the configuration variable.

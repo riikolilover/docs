@@ -1,7 +1,6 @@
 ---
 title: Troubleshooting your environment
 intro: "Learn about troubleshooting problems in your local environment and the {% data variables.product.prodname_docs %} staging platform."
-product: '{% data reusables.contributing.product-note %}'
 versions:
   feature: 'contributing'
 ---
@@ -96,13 +95,13 @@ During development, you can visit any page on `http://localhost:4000` and add `?
 
 If your text or code example includes content between curly brackets (`{` and `}`), you need to wrap it between <code>&#123% raw %&#125;</code> and <code>&#123% raw %&#125;</code> tags to disable Liquid processing for that section. For example:
 
-- **Use**:
+* **Use**:
 
   <pre>
   GITHUB_TOKEN: &#123% raw %&#125;${% raw %}{{ secrets.GITHUB_TOKEN }}{% endraw %}&#123% endraw %&#125;
   </pre>
 
-- **Avoid**:
+* **Avoid**:
 
   <pre>
   GITHUB_TOKEN: ${% raw %}${{ secrets.GITHUB_TOKEN }}${% endraw %}
