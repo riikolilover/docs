@@ -1,4 +1,5 @@
 {
-  "sha": "962d09b37dfcd6c1de875017b4f51908aaaa1613",
-  "blob-sha": "1eb866de6b24d110c017793ed18307332cb3df7b"
+  "sha": "b37f300b0ad41b4a3cc2bdfb0799b7443edf4311",
+  "blob-sha": "1c84fda1a814138b457b020b75f05e5e35fe6951",
+  "targetFilename": "code-security/secret-scanning/introduction/supported-secret-scanning-patterns"
 }
